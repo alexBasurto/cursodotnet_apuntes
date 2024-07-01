@@ -2,7 +2,7 @@
 ## INTRODUCCIÓN
 Angular es un framework de desarrollo de aplicaciones web creado por Google, que facilita la construcción de aplicaciones dinámicas y de alta performance mediante componentes reutilizables y un enfoque en la modularidad y la eficiencia.
 
-<img src="./images/Angular_gradient.png" alt="TypeScript Logo" width="200">
+<img src="./images/Angular_gradient2.png" alt="TypeScript Logo" max-height="200">
 
 
 - [ANGULAR.DEV - Página oficial y documentación](https://angular.dev/)
