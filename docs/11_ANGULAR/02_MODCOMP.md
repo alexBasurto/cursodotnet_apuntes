@@ -5,15 +5,20 @@ ng new NombreProyecto
 ```
 ---------------------------------------
 
-## LIVE PREVIEW
-Comando live preview:
+## NG SERVE
+
+Comando ng serve: este comando compila la aplicación Angular y la sirve en un servidor de desarrollo local. Por defecto, la aplicación estará disponible en la URL `http://localhost:4200/`.
+No crea archivos en el disco, sino que mantiene la compilación en la memoria, lo que permite tiempos de compilación más rápidos y recompilaciones incrementales cuando se realizan cambios en el código.
 ```bash
 ng serve -o
 ```
 
-Por defecto, servirá la preview en la URL `http://localhost:4200/`.
+El flag `-o` ó `--open` le indica a Angular CLI que, una vez que la aplicación esté compilada y el servidor de desarrollo esté en funcionamiento, debe abrir automáticamente el navegador web predeterminado del sistema y cargar la aplicación en él.
+
+Este comando es especialmente útil para el desarrollo, ya que acelera el proceso de ver los cambios en tu aplicación y proporciona una experiencia de desarrollo más fluida.
 
 ## Crear MODULO
+
 Imagina un módulo en Angular como un contenedor para organizar las características y funcionalidades de tu aplicación.
 ```bash
 ng generate module nombreModulo
@@ -61,76 +66,46 @@ Un componente siempre es una clase, siguiendo el enfoque de OOP de Angular y Typ
 
 Un componente no puede estar suelto. Tiene que estar dentro de un módulo. Si no especificamos, lo mete en el módulo por defecto que es app.
 
-Como generar el componente **sin archivo de pruebas** (`.spec.ts`), añadir `--skip-tests`:
+- Generar el componente **sin archivo de pruebas** (`.spec.ts`), añadir `--skip-tests`:
 
-```bash
-ng generate component nombreModulo/nombreComponente --skip-tests
-```
+  ```bash
+  ng generate component nombreModulo/nombreComponente --skip-tests
+  ```
 
-Como generar el componente **sin generar su propia carpeta**:
-```bash
-ng generate component nombreModulo/nombreComponente --flat
-```
+- Generar el componente **sin generar su propia carpeta**:
+  ```bash
+  ng generate component nombreModulo/nombreComponente --flat
+  ```
 
-Como generar el componente **sin archivo CSS**:
-```bash
-ng generate component nombreModulo/nombreComponente --style=none
-```
+- Generar el componente **sin archivo CSS**:
+  ```bash
+  ng generate component nombreModulo/nombreComponente --style=none
+  ```
 
-Como generar el componente **sin archivo HTML (inline template)**:
-```bash
-ng generate component nombreModulo/nombreComponente -t
-```
+- Generar el componente **sin archivo HTML (inline template)**:
+  ```bash
+  ng generate component nombreModulo/nombreComponente -t
+  ```
 
 ---------------------------------------
 
 ## Crear SERVICIO
 Los servicios en Angular son clases que se utilizan para compartir datos y funcionalidades entre diferentes partes de la aplicación, como componentes. Ayudan a mantener el código organizado y promueven la reutilización al centralizar la lógica que no está directamente relacionada con la interfaz de usuario.
+
 Los servicios en Angular también se utilizan para manejar la comunicación con APIs externas. Pueden encapsular la lógica para realizar peticiones HTTP, procesar respuestas y manejar datos provenientes de APIs RESTful u otros servicios externos. Esto ayuda a mantener la separación de preocupaciones y facilita la integración de datos externos en la aplicación Angular.
+
 ```bash
 ng g s services/nombreServicio
 ```
 
 ### Ejemplo de servicio consultando una API Rest por el método GET:
-```ts
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ICategoriasMeal, IMeals } from './meal.interface';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class RecetasService {
-  constructor(private http: HttpClient) {}
-
-  getRecetas(categoria: string): Observable<IMeals> {
-    return this.http.get<IMeals>(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoria}`);
-  }
-
-  getCategorias(): Observable<ICategoriasMeal> {
-    return this.http.get<ICategoriasMeal>(`https://www.themealdb.com/api/json/v1/1/list.php?c=list`);
-  }
-}
-```
-
-
----------------------------------------
-
-
-Creación de componente y servicio:
-```bash
-ng g c rest/recetas
-ng g s services/recetas
-```
-
 
 rxjs: librería de MS para trabajar con llamadas a APIs (Tipo fetch pero mejor.). Angular lo incorpora desde hace tiempo.
 
 ```ts
 import { HttpClient } from '@angular/common/http'; // Importa el servicio HttpClient para hacer peticiones HTTP.
 import { Injectable } from '@angular/core'; // Importa el decorador Injectable para que este servicio pueda ser inyectado en otros componentes o servicios.
-import { Observable } from 'rxjs'; // Importa Observable para trabajar con datos asíncronos.
+import { Observable } from 'rxjs'; // Importa Observable para trabajar con datos asíncronos. RxJS es una librería para programación reactiva que permite trabajar con flujos de datos asíncronos y eventos.
 import { IMeals } from '../interfaces/meal.interface'; // Importa la interfaz IMeals para tipar la respuesta de la API.
 
 @Injectable({
@@ -157,7 +132,7 @@ export class RecetasService {
 
 ```
 
-Incluir siempre el httpClientModule en el import de `app.module.ts`:
+Además, es necesario incluir siempre el HttpClientModule en el import de `app.module.ts`:
 
 ```ts
   imports: [
@@ -165,68 +140,37 @@ Incluir siempre el httpClientModule en el import de `app.module.ts`:
     FormsModule,
     HttpClientModule
   ]
-  ```
-
-Dentro del método que llama a la API:
-  - next - como try
-  - error - como catch
-  - continue - como finally
-
-  ```ts
-
-  getRecetas() {
-    this.recetasService.getRecetas(this.categoriaSeleccionada).subscribe({
-      next: (data: IMeals) => {
-        console.log(data);
-        this.recetario = data;
-
-        this.mostrarError = false;
-      },
-      error: (err) => (this.mostrarError = true),
-      complete: () => console.log('ok')
-    });
-  }
-
-  ```
-
-##### Módulo de enrutamiento:
-
-Nuevo módulo para enrutar: generar módulo
-```bash
-ng g m appRouting
 ```
-Me genera el módulo dentro de la carpeta app en una carpeta llamada igual que el módulo.
-Por buenas prácticas, movemos el archivo `app-routing.module.ts` dentro de la carpeta `app`. Y borramos la carpeta que queda vacía.
 
-En el archivo `app-routing.module.ts` agregamos lo siguiente, entre ello un array de rutas:
+### Observable y RxJS
+
+En RxJS, los flujos de datos se manejan mediante observables. Cuando un observable se suscribe, se pueden definir tres tipos de manejadores para los eventos del flujo de datos:
+
+**next**: Manejador de datos emitidos (similar a try).
+**error**: Manejador de errores (similar a catch).
+**complete**: Manejador de finalización (similar a finally).
+
+Analogía con try-catch-finally:
+- next: Se ejecuta cada vez que el observable emite un valor. Es equivalente a la parte try donde se maneja la lógica principal.
+- error: Se ejecuta si ocurre un error durante la emisión de datos. Es equivalente a catch, donde se maneja la lógica de error.
+- complete: Se ejecuta cuando el observable completa su emisión de datos sin errores. Es equivalente a finally, que se ejecuta siempre al final, independientemente de si ocurrió un error o no.
+
 ```ts
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { BindingComponent } from './introduccion/binding/binding.component';
-import { DirectivasComponent } from './introduccion/directivas/directivas.component';
-import { AngularPipesComponent } from './pipes/angular-pipes/angular-pipes.component';
-import { PipesPersonalizadosComponent } from './pipes/pipes-personalizados/pipes-personalizados.component';
 
-  
-const appRoutes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'binding', component: BindingComponent},
-  { path: 'directivas', component: DirectivasComponent},
-  { path: 'pipes-angular', component: AngularPipesComponent},
-  { path: 'pipes-personalizados', component: PipesPersonalizadosComponent},
-  { path: '**', component: NotFoundComponent }
-];
+getRecetas() {
+  this.recetasService.getRecetas(this.categoriaSeleccionada).subscribe({
+    next: (data: IMeals) => {
+      console.log(data);
+      this.recetario = data;
 
-@NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule {}
+      this.mostrarError = false;
+    },
+    error: (err) => (this.mostrarError = true),
+    complete: () => console.log('ok')
+  });
+}
+
 ```
+------------------------------
 
-
-------------------------
 
