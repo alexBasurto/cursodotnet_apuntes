@@ -1,0 +1,8 @@
+# DIRECTIVAS
+
+
+
+
+ngif
+ngfor
+ngswitch
