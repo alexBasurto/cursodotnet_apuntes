@@ -1,3 +1,6 @@
+Idea de como introducir el tema:
+"cómo hemos podido ir viendo durante los ejemplos en el código, ..."
+
 
 ## Decoradores en Angular
 En Angular, los decoradores son una característica de TypeScript que se utilizan para añadir metadatos a clases, métodos, propiedades o parámetros. Estos metadatos permiten que Angular entienda cómo las diferentes piezas de la aplicación deben comportarse y cómo deben interactuar entre sí.
