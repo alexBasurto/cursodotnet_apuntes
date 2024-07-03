@@ -87,6 +87,29 @@ Un componente no puede estar suelto. Tiene que estar dentro de un módulo. Si no
   ng generate component nombreModulo/nombreComponente -t
   ```
 
+### Cómo usar Componentes
+Uso común: Para definir elementos reutilizables y encapsular el comportamiento y la lógica en componentes independientes.
+
+El componente define en su modelo (`nombre.component.ts`) en la propiedad de componente `selector` su nombre como **directiva de componente**.
+
+```ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'AngularBasicos';
+}
+```
+
+Luego cargamos dichos componentes en los distintos templates refiriendonos a ellos de la siguiente manera:
+```ts
+  <app-root></app-root>
+```
+
 ---------------------------------------
 
 ## Crear SERVICIO
