@@ -83,6 +83,15 @@ Una vez listo el módulo de enrutamiento, procedemos a alimentar las rutas en la
     </div>
   </nav>
   ```
-2. En el módulo APP (app.module.ts): importar `AppRouterModule` e importar `HttpClientModule`.
+  
+  2. En la plantilla del componente app, alimentaremos el `<router-outlet>`:
+  ```html
+  <div class="container">
+  <app-navbar></app-navbar>
+  <div class="mt-4">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+  ```
 
 Si la ruta es de un componente en diferido, debe ser alimentada de una forma distinta. Lo veremos más adelante en el apartado de DIFERIDO.
