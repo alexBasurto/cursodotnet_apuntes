@@ -3,7 +3,11 @@
 
 ## Módulo de enrutamiento:
 
-Nuevo módulo para enrutar: primero generamos su módulo.
+En caso de que vayamos a utilizar Angular Routing, es altamente recomendable que al crear nuestro proyecto habilitasemos con `yes` la opción de `add Angular Routing`. Esta opción configura automáticamente algunas partes esenciales del enrutamiento en Angular, lo cual simplifica el proceso inicial y asegura que todas las dependencias y configuraciones necesarias estén correctamente establecidas desde el principio.
+
+Si decides no habilitar el enrutamiento al crear el proyecto, aún puedes configurarlo manualmente más tarde.
+
+Es buena práctica crear un módulo específico para Routing, el cual luego importaremos en el módulo principal de la aplicación, app. Esto proporciona organización y separación de responsabilidades en el proyecto.
 
 ```bash
 ng g m appRouting --flat
@@ -40,6 +44,25 @@ const appRoutes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
+```
+
+Importamos el módulo `appRouting` en el módulo principal `app`:
+
+```ts
+// ...
+import { AppRoutingModule } from './app-routing.module';
+
+@NgModule({
+  declarations: [
+    // ...
+  ],
+  imports: [
+    AppRoutingModule
+  ],
+  // ...
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
 ```
 
 ------------------------

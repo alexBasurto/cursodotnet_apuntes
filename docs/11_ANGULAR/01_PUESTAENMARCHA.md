@@ -59,6 +59,7 @@ Nos preguntará varias cosas:
 
 - Angular Language Service
 - Angular Essentials (John Papa)
+
 ![alt text](../images/ngextensions.png)
 
 ---------------------------------
