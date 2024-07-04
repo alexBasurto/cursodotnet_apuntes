@@ -3,7 +3,7 @@
 
 ## Módulo de enrutamiento:
 
-En caso de que vayamos a utilizar Angular Routing, es altamente recomendable que al crear nuestro proyecto habilitasemos con `yes` la opción de `add Angular Routing`. Esta opción configura automáticamente algunas partes esenciales del enrutamiento en Angular, lo cual simplifica el proceso inicial y asegura que todas las dependencias y configuraciones necesarias estén correctamente establecidas desde el principio.
+En caso de que vayamos a utilizar Angular Routing, es altamente recomendable que al crear nuestro proyecto, durante el asistente, habilitemos con `yes` la opción de `add Angular Routing`. Esta opción configura automáticamente algunas partes esenciales del enrutamiento en Angular, lo cual simplifica el proceso inicial y asegura que todas las dependencias y configuraciones necesarias estén correctamente establecidas desde el principio.
 
 Si decides no habilitar el enrutamiento al crear el proyecto, aún puedes configurarlo manualmente más tarde.
 
@@ -13,8 +13,8 @@ Es buena práctica crear un módulo específico para Routing, el cual luego impo
 ng g m appRouting --flat
 ```
 
-Generará el módulo dentro de la carpeta app en una carpeta llamada igual que el módulo.
-Por buenas prácticas, generamos `app-routing.module.ts` sin carpeta propia, dentro de la carpeta `app`.
+Este comando genera el módulo dentro de la carpeta app en una carpeta llamada igual que el módulo.
+Por buenas prácticas, usamos el flag `--flat`, para generar `app-routing.module.ts` sin carpeta propia, dentro de la carpeta `app`.
 
 Ejemplo de `app-routing.module.ts`, entre ello un array de rutas:
 
@@ -29,7 +29,7 @@ import { AngularPipesComponent } from './pipes/angular-pipes/angular-pipes.compo
 import { PipesPersonalizadosComponent } from './pipes/pipes-personalizados/pipes-personalizados.component';
 
   
-const appRoutes: Routes = [
+const appRoutes: Routes = [ // ARRAY DE RUTAS
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'binding', component: BindingComponent},
@@ -95,3 +95,7 @@ Una vez listo el módulo de enrutamiento, procedemos a alimentar las rutas en la
   ```
 
 Si la ruta es de un componente en diferido, debe ser alimentada de una forma distinta. Lo veremos más adelante en el apartado de DIFERIDO.
+
+----
+
+[<-- Anterior](./03_DIRECTIVAS.md) | [Inicio Angular](../11_ANGULAR/) | [Siguiente -->](./05_PIPES.md)
