@@ -110,6 +110,22 @@ Luego cargamos dichos componentes en los distintos templates refiriendonos a ell
   <app-root></app-root>
 ```
 
+Es posible integrar la plantilla HTML dentro del modelo del componente, manteniendo todo en un único archivo:
+
+```ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-formulario-usuarios',
+  // templateUrl: './formulario-usuarios.component.html',
+  template: '<h1></h1>',
+  styleUrls: ['./formulario-usuarios.component.css']
+})
+export class FormularioUsuariosComponent {
+
+}
+```
+
 ---------------------------------------
 
 ## Crear SERVICIO
