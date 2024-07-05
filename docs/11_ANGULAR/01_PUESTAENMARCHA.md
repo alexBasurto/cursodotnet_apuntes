@@ -123,7 +123,6 @@ Las directivas son instrucciones en el DOM que Angular aplica para transformar e
     - NgIf, NgForOf, NgSwitch
 - Directivas creadas por nosotros.
 
-
 ### Pipes
 Los pipes en Angular permiten transformar el contenido mostrado en una plantilla. Se utilizan para formatear fechas, números, cadenas de texto, entre otros.
 
