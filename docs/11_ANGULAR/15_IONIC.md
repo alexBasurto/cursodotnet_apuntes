@@ -1,5 +1,5 @@
 # IONIC FRAMEWORK
-<img src="../images/Ionic_Logo.svg" width="400px" alt="Logo de Ionic Framework">
+<img src="../images/Ionic_Logo.svg" width="400px" alt="Logo de Ionic Framework" style="pointer-events: none;">
 
 Como futuros desarrolladores de Angular, cabe destacar la importancia de **Ionic Framework** para el desarrollo móvil.
 
