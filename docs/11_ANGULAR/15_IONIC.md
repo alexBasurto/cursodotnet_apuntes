@@ -1,10 +1,12 @@
 # IONIC FRAMEWORK
+<img src="../images/Ionic_Logo.svg" width="400px" alt="Logo de Ionic Framework">
+
 Como futuros desarrolladores de Angular, cabe destacar la importancia de **Ionic Framework** para el desarrollo móvil.
 
 Ionic es un framework de código abierto para el desarrollo de aplicaciones móviles multiplataforma. Utiliza tecnologías web como HTML, CSS y JavaScript para crear aplicaciones que se ejecutan en iOS, Android y la web desde una única base de código. Ionic se integra muy bien con Angular, pero también soporta otros frameworks como React y Vue.
 
 - [Página Oficial Ionic Framework](https://ionicframework.com/)
-- [Artículo Wikipedia Ionic Framework](https://en.wikipedia.org/wiki/Ionic_(mobile_app_framework))
+- [Artículo Wikipedia Ionic Framework (EN)](https://en.wikipedia.org/wiki/Ionic_(mobile_app_framework))
 
 ## ¿Por qué Ionic es apropiado si vienes de Angular?
 
@@ -18,4 +20,4 @@ Ionic es un framework de código abierto para el desarrollo de aplicaciones móv
 
 5. **Desarrollo Rápido:** Aprovechar tus conocimientos de Angular te permite desarrollar más rápidamente ya que estás familiarizado con la estructura y las prácticas de desarrollo. 
 
-En resumen, si ya conoces Angular, utilizar Ionic te permitirá crear aplicaciones móviles de manera eficiente, con una curva de aprendizaje mínima, y aprovechar al máximo tus habilidades y conocimientos actuales.
+En resumen, si ya conoces Angular, utilizar Ionic te permitirá crear aplicaciones móviles de manera eficiente, con una curva de aprendizaje menor, aprovechando al máximo tus habilidades y conocimientos actuales.
