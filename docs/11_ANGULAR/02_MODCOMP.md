@@ -117,83 +117,76 @@ Los servicios en Angular son clases que se utilizan para compartir datos y funci
 
 Los servicios en Angular también se utilizan para manejar la comunicación con APIs externas. Pueden encapsular la lógica para realizar peticiones HTTP, procesar respuestas y manejar datos provenientes de APIs RESTful u otros servicios externos. Esto ayuda a mantener la separación de preocupaciones y facilita la integración de datos externos en la aplicación Angular.
 
+1. Se genera el servicio:
+
 ```bash
 ng g s services/nombreServicio
 ```
 
-### Ejemplo de servicio consultando una API Rest por el método GET:
-
-rxjs: librería de MS para trabajar con llamadas a APIs (Tipo fetch pero mejor.). Angular lo incorpora desde hace tiempo.
+2. Se configura el servicio: el servicio es un @Injectable, debemos configurarlo con los módulos `HttpClient` y `Observable` (RXJS) y con los correspondientes métodos GET y POST que consuman y envíen datos a la API Rest.
 
 ```ts
-import { HttpClient } from '@angular/common/http'; // Importa el servicio HttpClient para hacer peticiones HTTP.
-import { Injectable } from '@angular/core'; // Importa el decorador Injectable para que este servicio pueda ser inyectado en otros componentes o servicios.
-import { Observable } from 'rxjs'; // Importa Observable para trabajar con datos asíncronos. RxJS es una librería para programación reactiva que permite trabajar con flujos de datos asíncronos y eventos.
-import { IMeals } from '../interfaces/meal.interface'; // Importa la interfaz IMeals para tipar la respuesta de la API.
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
-  // Indica que este servicio es un singleton y estará disponible en toda la aplicación.
-  // Anteriormente se registraba en el módulo de Angular, pero ahora se hace con providedIn.
 })
-export class RecetasService {
-  // El decorador @Injectable indica que este servicio puede ser inyectado en cualquier parte de la aplicación.
-  // 'providedIn: 'root'' significa que el servicio es un singleton y estará disponible en toda la aplicación.
+export class MiServicio {
+
+  private apiUrl = 'https://api.example.com/data'; // URL de la API
 
   constructor(private http: HttpClient) {}
-  // El constructor inyecta el HttpClient en el servicio para permitir hacer peticiones HTTP.
 
-  getRecetas(categoria: string): Observable<IMeals> {
-    // Método que recibe una categoría como parámetro y devuelve un Observable de tipo IMeals.
-    // Este método realiza una petición GET a la API de TheMealDB para obtener recetas filtradas por categoría.
+  obtenerDatos(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
+  }
 
-    return this.http.get<IMeals>(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoria}`);
-    // Hace una petición GET a la URL de la API, incluyendo la categoría en la query string.
-    // La respuesta de la API es tipada como IMeals.
+  enviarDatos(datos: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, datos);
+  }
+}
+```
+
+3. Se inyecta el servicio en el componente en el que queramos hacer uso de él.
+
+```ts
+import { Component } from '@angular/core';
+import { MiServicio } from './mi-servicio.service';
+
+@Component({
+  selector: 'app-mi-componente',
+  template: `
+    <button (click)="getData()">Obtener Datos</button>
+    <button (click)="sendData()">Enviar Datos</button>
+  `
+})
+export class MiComponente {
+
+  constructor(private miServicio: MiServicio) {}
+
+  getData() {
+    this.miServicio.obtenerDatos().subscribe(data => {
+      console.log('Datos obtenidos:', data);
+    });
+  }
+
+  sendData() {
+    const datos = { mensaje: 'Hola desde Angular' };
+    this.miServicio.enviarDatos(datos).subscribe(response => {
+      console.log('Datos enviados:', response);
+    });
   }
 }
 
 ```
 
-Además, es necesario incluir siempre el HttpClientModule en el import de `app.module.ts`:
+4. Importamos el módulo `HttpClientModule` en el módulo principal de la aplicación.
 
-```ts
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule
-  ]
-```
+Más adelante, en el apartado [API Service](./09_API_SERVICE.md) se profundiza en los servicios, cómo configurarlos y como implantarlos.
 
-### Observable y RxJS
 
-En RxJS, los flujos de datos se manejan mediante observables. Cuando un observable se suscribe, se pueden definir tres tipos de manejadores para los eventos del flujo de datos:
-
-**next**: Manejador de datos emitidos (similar a try).
-**error**: Manejador de errores (similar a catch).
-**complete**: Manejador de finalización (similar a finally).
-
-Analogía con try-catch-finally:
-- next: Se ejecuta cada vez que el observable emite un valor. Es equivalente a la parte try donde se maneja la lógica principal.
-- error: Se ejecuta si ocurre un error durante la emisión de datos. Es equivalente a catch, donde se maneja la lógica de error.
-- complete: Se ejecuta cuando el observable completa su emisión de datos sin errores. Es equivalente a finally, que se ejecuta siempre al final, independientemente de si ocurrió un error o no.
-
-```ts
-
-getRecetas() {
-  this.recetasService.getRecetas(this.categoriaSeleccionada).subscribe({
-    next: (data: IMeals) => {
-      console.log(data);
-      this.recetario = data;
-
-      this.mostrarError = false;
-    },
-    error: (err) => (this.mostrarError = true),
-    complete: () => console.log('ok')
-  });
-}
-
-```
 ------------------------------
 
 

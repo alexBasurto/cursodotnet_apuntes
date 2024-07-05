@@ -23,8 +23,8 @@ A continuación, la teoría separada por temas:
 | [Carga en Diferido](./11_ANGULAR/06_DIFERIDO.md) | Carga de componentes en diferido |
 | [Inputs y outputs](./11_ANGULAR/07_IO.md) | Comunicación entre componentes |
 | [Formularios](./11_ANGULAR/08_FORMULARIOS.md) | Formularios |
-| [Decoradores](./11_ANGULAR/09_DECORADORES.md) | Decoradores en Angular |
-| ... | ... |
+| [API Service](./11_ANGULAR/09_API_SERVICE.md) | Consumo de API REST con Servicios, RXJS y Observables en Angular |
+| [Decoradores](./11_ANGULAR/10_DECORADORES.md) | Decoradores en Angular |
 | [Ionic Framework](./11_ANGULAR/15_IONIC.md) | Otros temas: Ionic Framework |
 
 
