@@ -1,4 +1,4 @@
-# Consumo de API REST con Servicios, RXJS y Observables en Angular
+# Servicios: consumo de API Rest
 
 En aplicaciones modernas, es común interactuar con APIs REST para obtener y enviar datos. Angular facilita esta tarea a través de servicios (@Injectable) y la biblioteca RXJS para la gestión de operaciones asíncronas. En esta sección, aprenderás a configurar un servicio en Angular para consumir una API REST, utilizando observables para manejar la emisión y recepción de datos de manera eficiente.
 
